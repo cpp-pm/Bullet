@@ -84,12 +84,11 @@ install(
   INCLUDES DESTINATION "${include_install_dir}"
   )
 
-foreach(HEADER ${TARGET_PUBLIC_HDRS})
-  install(
-    FILES "${HEADER}"
-    DESTINATION "${include_install_dir}/${PROJECT_NAME}"
-    )
-endforeach()
+install(
+  DIRECTORY src/ # Trailing slash is required
+  DESTINATION "${include_install_dir}/${PROJECT_NAME}"
+  FILES_MATCHING PATTERN "*.h" PATTERN "*.hpp"
+  )
 
 install(
   FILES "${project_config}" "${version_config}"
